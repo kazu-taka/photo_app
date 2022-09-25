@@ -133,6 +133,44 @@ main {
     height: 60px;
 }
 
+/* show.php */
+.content {
+    width: 50%;
+    margin: 0 auto;
+}
+.main_content img {
+    width: 100%;
+    height: 50vh;
+    border-radius: 40px;
+    object-fit: cover;
+}
+.main_content p {
+    margin-top: 10px;
+    width: 100%;
+    color: #4D4D4D;
+}
+.button {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.edit_button {
+    font-size: 18px;
+    border-radius: 18px;
+    padding: 5px 30px;
+    background: #39B54A;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+.delete_button {
+    font-size: 18px;
+    border-radius: 18px;
+    padding: 5px 30px;
+    background: #CCCCCC;
+    margin-left: 10px;
+    color: #FFFFFF;
+}
+
 /* レスポンシブ */
 @media (max-width: 900px) {
     /* upload.php */
@@ -142,11 +180,19 @@ main {
     .upload_content_form {
         width: 70%;
     }
+    /* show.php */
+    .content {
+        width: 70%;
+    }
 }
 
 @media (max-width: 600px) {
     /* upload.php */
     .upload_content_form {
+        width: 90%;
+    }
+    /* show.php */
+    .content {
         width: 90%;
     }
 }
