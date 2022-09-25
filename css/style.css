@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+/*コンテンツ全体に対する指定*/
+html {
+    font-size: 100%;
+}
+body {
+    font-family: 'M PLUS 1p', sans-serif;
+    color: #4D4D4D;
+}
+main {
+    min-height: calc(100vh - 80px - 70px);
+}
+.wrapper {
+    margin: 0;
+    padding: 0 4%;
+}
+.page_header {
+    background-color: #000000;
+    display: flex;
+    height: 80px;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo {
+    text-decoration: none;
+    color: #ffffff;
+}
+.home_icon {
+    color: #FFFFFF;
+    font-size: 30px;
+}
+.page_footer {
+    height: 70px;
+    background-color: #D2D2D2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer-text {
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+/* upload.php */
+.content_center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.upload_content_form {
+    width: 50%;
+}
+.upload_content_label {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    background-color: #CCCCCC;
+    border-radius: 40px;
+    color: #ffffff;
+}
+.plus_icon {
+    display: inline-block;
+    font-size: 50px;
+}
+.upload_text {
+    font-size: 30px;
+    font-weight: bold;
+}
+.input_file {
+    display: none;
+}
+.input_text {
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid #E6E6E6;
+    padding: 10px;
+    height: 73px;
+}
+.upload_content_label img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.input_text::placeholder {
+    color: #E6E6E6;
+}
+.upload_submit {
+    display: block;
+    margin-top: 10px;
+    border-radius: 18px;
+    font-size: 18px;
+    padding: 2px 30px;
+    background: #F15A24;
+    color: #ffffff;
+    margin-left: auto;
+}
+
+ /* レスポンシブ */
+@media (max-width: 900px) {
+    /* upload.php */
+    .upload_content_label {
+        height: 355px;
+    }
+    .upload_content_form {
+        width: 70%;
+    }
+}
+
+@media (max-width: 600px) {
+    /* upload.php */
+    .upload_content_form {
+        width: 90%;
+    }
+}
