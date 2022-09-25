@@ -171,6 +171,15 @@ main {
     color: #FFFFFF;
 }
 
+/* edit.php */
+.update_button {
+    font-size: 18px;
+    border-radius: 18px;
+    padding: 5px 30px;
+    background: #F15A24;
+    color: #FFFFFF;
+}
+
 /* レスポンシブ */
 @media (max-width: 900px) {
     /* upload.php */
