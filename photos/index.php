@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-<?php include_once __DIR__ . '/_head.html' ?>
+<?php include_once __DIR__ . '/../common/_head.html' ?>
 <body>
-    <?php include_once __DIR__ . '/_header.html' ?>
+    <?php include_once __DIR__ . '/../common/_header.html' ?>
 
     <main class="article wrapper">
         <div class="grid" data-masonry='{"columnWidth": 270, "itemSelector": ".grid_item", "isFitWidth": true}'>
@@ -45,7 +45,7 @@
         </a>
     </main>
     
-    <?php include_once __DIR__ . '/_footer.html' ?>
+    <?php include_once __DIR__ . '/../common/_footer.html' ?>
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 </body>
 </html>

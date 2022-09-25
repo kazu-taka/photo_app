@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-<?php include_once __DIR__ . '/_head.html' ?>
+<?php include_once __DIR__ . '/../common/_head.html' ?>
 <body>
-    <?php include_once __DIR__ . '/_header.html' ?>
+    <?php include_once __DIR__ . '/../common/_header.html' ?>
 
     <main class="main_content content_center wrapper">
         <form action="" method="post" class="upload_content_form" enctype="multipart/form-data">
@@ -17,6 +17,6 @@
         </form>
     </main>
 
-    <?php include_once __DIR__ . '/_footer.html' ?>
+    <?php include_once __DIR__ . '/../common/_footer.html' ?>
 </body>
 </html>
