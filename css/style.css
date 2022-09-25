@@ -217,7 +217,8 @@ input[type="password"]::placeholder {
     display: flex;
     justify-content: space-between;
 }
-.signup_button {
+.signup_button,
+.login_button {
     background: #239bed;
     padding: 15px 0;
     width: 48%;
@@ -226,13 +227,45 @@ input[type="password"]::placeholder {
     text-indent: 0.5rem;
     border-radius: 30px;
 }
-.login_page_button {
+.login_page_button,
+.signup_page_button {
     text-align: center;
     padding: 15px 0;
     width: 48%;
     background: #000000;
     color: #FFFFFF;
     border-radius: 30px;
+    text-decoration: none;
+}
+
+/* login.php */
+.login_content {
+    background-color: #DDDDDD;
+    border-radius: 10px;
+    width: 500px;
+    margin: 50px auto;
+    padding: 50px;
+}
+.login_title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.login_button {
+    border-radius: 30px;
+    background: #239bed;
+    padding: 15px 0;
+    width: 48%;
+    color: #FFFFFF;
+    letter-spacing: 0.5rem;
+    text-indent: 0.5rem
+}
+.signup_page_button {
+    border-radius: 30px;
+    text-align: center;
+    padding: 15px 0;
+    width: 48%;
+    background: #000000;
+    color: #FFFFFF;
     text-decoration: none;
 }
 
@@ -275,6 +308,20 @@ input[type="password"]::placeholder {
     .login_page_button {
         width: 100%;
         text-align: center;
+        margin-top: 5px;
+        padding: 10px;
+    }
+    /* login.php */
+    .login_content {
+        width: 70%;
+    }
+    .login_button {
+        width: 100%;
+        padding: 10px;
+    }
+    .signup_page_button {
+        text-align: center;
+        width: 100%;
         margin-top: 5px;
         padding: 10px;
     }
