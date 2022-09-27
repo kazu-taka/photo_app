@@ -22,3 +22,80 @@ function h($str)
     // ENT_QUOTES: シングルクオートとダブルクオートを共に変換する。
     return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
+
+function signup_validate($email, $name, $password)
+{
+    $errors = [];
+
+    if (empty($email)) {
+        $errors[] = MSG_EMAIL_REQUIRED;
+    }
+
+    if (empty($name)) {
+        $errors[] = MSG_NAME_REQUIRED;
+    }
+
+    if (empty($password)) {
+        $errors[] = MSG_PASSWORD_REQUIRED;
+    }
+
+    if (empty($errors) &&
+        check_exist_user($email)) {
+        $errors[] = MSG_EMAIL_DUPLICATE;
+    }
+
+    return $errors;
+}
+
+function insert_user($email, $name, $password)
+{
+    try {
+        $dbh = connect_db();
+
+        $sql = <<<EOM
+        INSERT INTO
+            users
+            (email, name, password)
+        VALUES
+            (:email, :name, :password);
+        EOM;
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $pw_hash = password_hash($password, PASSWORD_DEFAULT);
+        $stmt->bindValue(':password', $pw_hash, PDO::PARAM_STR);
+
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
+
+function check_exist_user($email) 
+{
+    $dbh = connect_db();
+    
+    $sql = <<<EOM
+    SELECT 
+        * 
+    FROM 
+        users 
+    WHERE 
+        email = :email;
+    EOM;
+    
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmt->execute();
+
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if (!empty($user)) {
+        return true;
+    } else {
+        return false;
+    }
+}

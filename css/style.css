@@ -42,6 +42,12 @@ main {
     color: #ffffff;
     font-size: 1rem;
 }
+.errors li {
+    margin-top: 5px;
+    color: #ec008c;
+    text-align: center;
+    list-style: none;
+}
 
 /* upload.php */
 .content_center {
