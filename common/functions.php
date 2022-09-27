@@ -99,3 +99,46 @@ function check_exist_user($email)
         return false;
     }
 }
+
+function login_validate($email, $password)
+{
+    $errors = [];
+
+    if (empty($email)) {
+        $errors[] = MSG_EMAIL_REQUIRED;
+    }
+
+    if (empty($password)) {
+        $errors[] = MSG_PASSWORD_REQUIRED;
+    }
+
+    return $errors;
+}
+
+function find_user_by_email($email)
+{
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        users
+    WHERE
+        email = :email;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function user_login($user)
+{
+    $_SESSION['current_user']['id'] = $user['id'];
+    $_SESSION['current_user']['name'] = $user['name'];
+    header('Location: /photo_app/photos/index.php');
+    exit;
+}

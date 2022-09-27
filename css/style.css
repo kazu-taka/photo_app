@@ -26,6 +26,34 @@ main {
     text-decoration: none;
     color: #ffffff;
 }
+.right_content {
+    display: flex;
+}
+.login_info {
+    margin-right: 20px;
+    align-items: center;
+    display: flex;
+}
+.login_info p {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #ffffff;
+}
+.header_logout_button {
+    align-items: center;
+    font-size: 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 10px;
+}
+.header_login_button {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 10px;
+}
 .home_icon {
     color: #FFFFFF;
     font-size: 30px;
