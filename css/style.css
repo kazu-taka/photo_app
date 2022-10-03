@@ -70,6 +70,9 @@ main {
     color: #ffffff;
     font-size: 1rem;
 }
+.errors {
+    margin: 10px 0;
+}
 .errors li {
     margin-top: 5px;
     color: #ec008c;
@@ -82,6 +85,12 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.form_flex {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }
 .upload_content_form {
     width: 50%;
@@ -118,6 +127,7 @@ main {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    border-radius: 40px;
 }
 .input_text::placeholder {
     color: #E6E6E6;
