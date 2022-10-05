@@ -198,3 +198,85 @@ function insert_photo($user_id, $image_name, $description)
     }
 
 }
+
+function find_photos_all()
+{
+    $dbh = connect_db();
+
+    $sql = 'SELECT * FROM photos';
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function find_photo_by_id($id)
+{
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT 
+        * 
+    FROM 
+        photos 
+    WHERE 
+        id = :id;
+    EOM;
+    
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function update_validate($description, $upload_file)
+{
+    $errors = [];
+
+    if (empty($description)) {
+        $errors[] = MSG_NO_DESCRIPTION;
+    }
+
+    if (!empty($upload_file) &&
+        check_file_ext($upload_file)) {
+        $errors[] = MSG_NOT_ABLE_EXT;
+    }
+
+    return $errors;
+}
+
+function update_photo($id, $description, $image_name = '')
+{
+    try {
+        $dbh = connect_db();
+
+        $sql = <<<EOM
+        UPDATE
+            photos
+        SET
+            description = :description
+        EOM;
+
+        if (!empty($image_name)) {
+            $sql .= ', image = :image ';
+        }
+
+        $sql .= ' WHERE id = :id';
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':description', $description, PDO::PARAM_STR);
+
+        if (!empty($image_name)) {
+            $stmt->bindValue(':image', $image_name, PDO::PARAM_STR);
+        }
+
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return true;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
