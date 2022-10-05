@@ -7,11 +7,11 @@ require_once __DIR__ . '/../common/functions.php';
 session_start();
 
 $current_user = '';
-$photo_id = 0;
+$id = 0;
 
 // パラメータが渡されていなけらば一覧画面に戻す
-$photo_id = filter_input(INPUT_GET, 'photo_id');
-if (empty($photo_id)) {
+$id = filter_input(INPUT_GET, 'id');
+if (empty($id)) {
     header('Location: index.php');
     exit;
 }
@@ -21,7 +21,7 @@ if (isset($_SESSION['current_user'])) {
 }
 
 // idを基にデータを取得
-$photo = find_photo_by_id($photo_id);
+$photo = find_photo_by_id($id);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -38,8 +38,9 @@ $photo = find_photo_by_id($photo_id);
             </p>
             <?php if (!empty($current_user) && $current_user['id'] == $photo['user_id']) : ?>
                 <div class="button">
-                    <a href="edit.php?photo_id=<?= h($photo['id']) ?>" class="edit_button">編 集</a>
-                    <button class="delete_button">削 除</button>
+                    <a href="edit.php?id=<?= h($photo['id']) ?>" class="edit_button">編 集</a>
+                    <!-- <button class="delete_button">削 除</button> -->
+                    <button class="delete_button" onclick="if (!confirm('本当に削除してよろしいですか？')) {return false};location.href='delete.php?photo_id=<?= h($photo['id']) ?>'">削 除</button>
                 </div>
             <?php endif; ?>
         </div>

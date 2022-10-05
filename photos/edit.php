@@ -7,34 +7,36 @@ require_once __DIR__ . '/../common/functions.php';
 session_start();
 
 $current_user = '';
-$photo_id = 0;
+$id = 0;
 $photo = '';
 $description = '';
 $upload_file = '';
 $upload_tmp_file = '';
 $errors = [];
 
-$photo_id = filter_input(INPUT_GET, 'photo_id');
+$id = filter_input(INPUT_GET, 'id');
 
 // セッションにidが保持されていなければログイン画面にリダイレクト
 // パラメータを受け取れなけれらば一覧画面にリダイレクト
 if (empty($_SESSION['current_user'])) {
     header('Location: ../users/login.php');
     exit;
-} elseif (empty($photo_id)) {
+} elseif (empty($id)) {
     header('Location: index.php');
     exit;
 }
 
 $current_user = $_SESSION['current_user'];
-$photo = find_photo_by_id($photo_id);
+$photo = find_photo_by_id($id);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = filter_input(INPUT_POST, 'description');
     // アップロードした画像のファイル名
     // 変更がない場合は画像は更新しない
-    if (!empty($_FILES['image']['name']) &&
-        $_FILES['image']['name'] != $photo['image']) {
+    if (
+        !empty($_FILES['image']['name']) &&
+        $_FILES['image']['name'] != $photo['image']
+    ) {
         $upload_file = $_FILES['image']['name'];
         // サーバー上で一時的に保存されるテンポラリファイル名
         $upload_tmp_file = $_FILES['image']['tmp_name'];
@@ -45,15 +47,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $errors = update_validate($description, $upload_file);
 
-    if (empty($errors) &&
-        update_photo($photo_id, $description, $image_name)) {
+    if (
+        empty($errors) &&
+        update_photo($id, $description, $image_name)
+    ) {
 
-        if (!empty($upload_file) && 
-            move_uploaded_file($upload_tmp_file, $path)) {
+        if (
+            !empty($upload_file) &&
+            move_uploaded_file($upload_tmp_file, $path)
+        ) {
             unlink($old_image);
         }
 
-        header('Location: show.php?photo_id=' . $photo_id);
+        header('Location: show.php?id=' . $id);
         exit;
     }
 }

@@ -13,8 +13,11 @@ uploadFile.addEventListener('change', (event) => {
     const uploadText = document.getElementById("upload_text");
     const oldImg = document.getElementById("old_img");
 
-    if (plusIcon && uploadText != null) {
+    if (plusIcon != null) {
         preview.removeChild(plusIcon);
+    } 
+
+    if (uploadText != null) {
         preview.removeChild(uploadText);
     } 
 

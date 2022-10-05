@@ -24,7 +24,7 @@ $photos = find_photos_all()
         <div class="grid" data-masonry='{"columnWidth": 270, "itemSelector": ".grid_item", "isFitWidth": true}'>
             <?php foreach ($photos as $photo) : ?>
                 <div class="grid_item">
-                    <a href="show.php?photo_id=<?= h($photo['id']) ?>">
+                    <a href="show.php?id=<?= h($photo['id']) ?>">
                         <img src="../images/<?= h($photo['image']) ?>">
                     </a>
                 </div>

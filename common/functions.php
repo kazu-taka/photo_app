@@ -280,3 +280,26 @@ function update_photo($id, $description, $image_name = '')
         return false;
     }
 }
+
+function delete_photo_by_id($id)
+{
+    try {
+        $dbh = connect_db();
+
+        $sql = <<<EOM
+        DELETE 
+            FROM 
+        photos 
+            WHERE 
+        id = :id;
+        EOM;
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return true;
+    } catch (PDOException $e) {
+        return false;
+    }
+}
